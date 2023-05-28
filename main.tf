@@ -63,3 +63,10 @@ data "aws_iam_policy_document" "static_website_bucket" {
     }
   }
 }
+
+resource "aws_s3_object" "index_html" {
+  bucket       = aws_s3_bucket.static_website_bucket.id
+  key          = "index.html"
+  source       = "./static/index.html"
+  content_type = "text/html"
+}
