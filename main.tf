@@ -40,3 +40,26 @@ resource "aws_s3_bucket_website_configuration" "static_website_bucket" {
     suffix = "index.html"
   }
 }
+
+resource "aws_s3_bucket_policy" "static_website_bucket" {
+  bucket = aws_s3_bucket.static_website_bucket.id
+  policy = data.aws_iam_policy_document.static_website_bucket.json
+}
+
+data "aws_iam_policy_document" "static_website_bucket" {
+  version = "2012-10-17"
+  statement {
+    sid = "S3GetObjectAllow"
+    actions = [
+      "s3:GetObject"
+    ]
+    effect = "Allow"
+    resources = [
+      "${aws_s3_bucket.static_website_bucket.arn}/*",
+    ]
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+  }
+}
