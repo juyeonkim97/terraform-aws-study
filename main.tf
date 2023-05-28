@@ -32,3 +32,11 @@ resource "aws_s3_object" "static_website_bucket" {
   source   = "./static/${each.value}"
   etag     = filemd5("./static/${each.value}")
 }
+
+resource "aws_s3_bucket_website_configuration" "static_website_bucket" {
+  bucket = aws_s3_bucket.static_website_bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+}
