@@ -70,3 +70,10 @@ resource "aws_s3_object" "index_html" {
   source       = "./static/index.html"
   content_type = "text/html"
 }
+
+resource "aws_s3_object" "styles_css" {
+  bucket       = aws_s3_bucket.static_website_bucket.id
+  key          = "styles.css"
+  source       = "./static/styles.css"
+  content_type = "text/css"
+}
