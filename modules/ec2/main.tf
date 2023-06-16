@@ -9,7 +9,7 @@ data "aws_subnets" "default" {
   }
 }
 
-data "aws_ami" "amazon-linux-2-kernel-5" {
+data "aws_ami" "amazon_linux_2_kernel_5" {
   most_recent = true
   owners      = ["amazon"]
   filter {
@@ -18,6 +18,6 @@ data "aws_ami" "amazon-linux-2-kernel-5" {
   }
 }
 
-output "ami-id" {
-  value = data.aws_ami.amazon-linux-2-kernel-5.id
+output "linux_ami_id" {
+  value = data.aws_ami.amazon_linux_2_kernel_5.id
 }
